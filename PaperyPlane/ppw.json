@@ -3,7 +3,7 @@
   "productName": "Papery Planes",
   "productVersion": "1.0",
   "dataUrl": "https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@main/PaperyPlane/unity/ppw.data.unityweb",
-  "wasmCodeUrl": "./ppw.wasm.code.unityweb",
+  "wasmCodeUrl": "https://d342edtpnln07h.cloudfront.net/Games/PaperyPlane/ppw.wasm.code.unityweb",
   "wasmFrameworkUrl": "https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@main/PaperyPlane/unity/ppw.wasm.framework.unityweb",
   "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
   "webglContextAttributes": { "preserveDrawingBuffer": false },
