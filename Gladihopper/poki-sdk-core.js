@@ -1216,7 +1216,7 @@
     var i = e(78);
     e(104), e(105), e(106), e(107), t.exports = i
 }, function(t) {
-    t.exports = JSON.parse('{"a":"./prebid4.12.0.js"}')
+    t.exports = JSON.parse('{"a":"https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@1MTD/Gladihopper/prebid4.12.0.js"}')
 }, , function(t, n, e) {
     e(70);
     var i = e(30);
