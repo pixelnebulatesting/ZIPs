@@ -1,0 +1,12 @@
+# Ignore files larger than 100MB to avoid GitHub limits
+# Side Effects game files (too large)
+SideEffects/Build/SideEffectsWebBuild_V0.22.data.br
+SideEffects/Build/SideEffectsWebBuild_V0.22.wasm.br
+
+# Ignore all files larger than 100MB (you can add more as needed)
+*.data.br
+*.wasm.br
+
+# Temporary exclusion of large zip files (can be re-added individually later)
+# Uncomment specific lines below if you want to exclude certain large assets.zip files
+# */assets.zip
