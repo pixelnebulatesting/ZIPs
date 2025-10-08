@@ -15,7 +15,7 @@ if (!window.config.unityWebglLoaderUrl) {
     var versionSplit = window.config.unityVersion ? window.config.unityVersion.split(".") : [],
         year = versionSplit[0],
         minor = versionSplit[1];
-          window.config.unityWebglLoaderUrl ="./UnityLoader.2019.2.js";
+          window.config.unityWebglLoaderUrl ="https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@1MTD/Gladihopper/UnityLoader.2019.2.js";
     // switch (year) {
     //     case "2019":
     //         window.config.unityWebglLoaderUrl = 1 === minor ? "./UnityLoader.2019.1.js" : "./UnityLoader.2019.2.js";
