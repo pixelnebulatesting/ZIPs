@@ -34,6 +34,6 @@ sdkScript.onload = function() {
     var i = document.createElement("script");
     i.src = root + loader,
     document.body.appendChild(i)
-}
-,
+},   
+// Append the SDK script to the document body
 document.body.appendChild(sdkScript);
