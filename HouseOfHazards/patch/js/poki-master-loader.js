@@ -22,7 +22,7 @@ if (!window.config.unityWebglLoaderUrl) {
       , minor = versionSplit[1];
     switch (year) {
     case "2019":
-        window.config.unityWebglLoaderUrl = 1 === minor ? "patch/js/UnityLoader.2019.1.js" : "patch/js/UnityLoader.2019.2.js";
+        window.config.unityWebglLoaderUrl = 1 === minor ? "patch/js/UnityLoader.2019.1.js" : "https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@1MTD/HouseOfHazards/patch/js/UnityLoader.2019.2.js";
         break;
     default:
         window.config.unityWebglLoaderUrl = "UnityLoader.js"
