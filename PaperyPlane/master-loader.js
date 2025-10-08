@@ -65,7 +65,7 @@ if (window.extractedAssets && window.extractedAssets['poki-sdk.js']) {
     
 } else {
     console.log('Loading poki-sdk.js from URL (fallback)');
-    sdkScript.src = "https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@1MTD/PaperyPlane/poki-sdk.js";
+    sdkScript.src = "https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@b70246714a4dab48bd89b4e48be60a8d7eb87ca7/PaperyPlane/poki-sdk.js";
     sdkScript.onload = function() {
         var i = document.createElement("script");
         
