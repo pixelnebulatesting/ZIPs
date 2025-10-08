@@ -57,8 +57,8 @@ if (window.extractedAssets && window.extractedAssets['poki-sdk.js']) {
                 }
             }, 50);
         } else {
-            console.log('Loading', loader, 'from URL:', root + loader);
-            i.src = root + loader;
+            console.log('Loading', loader, 'from GitHub CDN URL');
+            i.src = "https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@d8400526ed7239c029f42fe21fcd71b561c89a9c/PaperyPlane/unity.js";
             document.body.appendChild(i);
         }
     }, 10); // Small delay to ensure poki-sdk.js executes first
@@ -88,8 +88,8 @@ if (window.extractedAssets && window.extractedAssets['poki-sdk.js']) {
                 }
             }, 50);
         } else {
-            console.log('Loading', loader, 'from URL:', root + loader);
-            i.src = root + loader;
+            console.log('Loading', loader, 'from GitHub CDN URL');
+            i.src = "https://cdn.jsdelivr.net/gh/pixelnebulatesting/ZIPs@d8400526ed7239c029f42fe21fcd71b561c89a9c/PaperyPlane/unity.js";
             document.body.appendChild(i);
         }
     };
