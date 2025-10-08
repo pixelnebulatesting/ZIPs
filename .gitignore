@@ -3,6 +3,10 @@
 SideEffects/Build/SideEffectsWebBuild_V0.22.data.br
 SideEffects/Build/SideEffectsWebBuild_V0.22.wasm.br
 
+# Large zip files over 50MB (GitHub's recommended limit)
+PickpocketSimulator/assets.zip
+TanukiSunset/assets.zip
+
 # Ignore all files larger than 100MB (you can add more as needed)
 *.data.br
 *.wasm.br
