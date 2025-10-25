@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stealth Browser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        input[type="text"], input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="url"]:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .button {
+            background: #ffd700;
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            display: inline-block;
+        }
+        .button:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .button.fullscreen-btn {
+            background: #28a745;
+        }
+        .button.fullscreen-btn:hover {
+            background: #34ce57;
+        }
+        .button.activate-btn {
+            background: #dc3545;
+            font-size: 18px;
+            padding: 18px 40px;
+        }
+        .button.activate-btn:hover {
+            background: #e74c3c;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.5);
+        }
+        .warning {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .warning h3 {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕵️ Stealth Browser</h1>
+        
+        <div class="warning">
+            <h3>⚠️ Warning</h3>
+            <p>This tool creates a stealth browsing environment. Use responsibly and in accordance with applicable laws and website terms of service.</p>
+        </div>
+
+        <form id="stealthForm">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="targetUrl">🌐 Target URL:</label>
+                    <input type="url" id="targetUrl" placeholder="https://example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="fakeTitle">📝 Fake Page Title:</label>
+                    <input type="text" id="fakeTitle" placeholder="Google" required>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="form-group">
+                    <label for="faviconUrl">🎯 Favicon URL:</label>
+                    <input type="url" id="faviconUrl" placeholder="https://www.google.com/favicon.ico">
+                </div>
+                <div class="form-group">
+                    <label for="customIcon">📁 Or Custom Icon URL:</label>
+                    <input type="url" id="customIcon" placeholder="https://example.com/icon.png">
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="enableFullscreen">
+                <label for="enableFullscreen">🖥️ Enable Fullscreen Mode</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="hideScrollbars" checked>
+                <label for="hideScrollbars">📜 Hide Scrollbars</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="disableContextMenu" checked>
+                <label for="disableContextMenu">🚫 Disable Right-Click Menu</label>
+            </div>
+
+            <div class="button-container">
+                <button type="button" class="button fullscreen-btn" onclick="testFullscreen()">
+                    🖥️ Test Fullscreen
+                </button>
+                <button type="submit" class="button activate-btn">
+                    🚀 ACTIVATE STEALTH MODE
+                </button>
+            </div>
+        </form>
+
+        <div style="margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+            <h3>📋 Quick Presets:</h3>
+            <button class="button" onclick="loadPreset('google')">Google</button>
+            <button class="button" onclick="loadPreset('youtube')">YouTube</button>
+            <button class="button" onclick="loadPreset('github')">GitHub</button>
+            <button class="button" onclick="loadPreset('reddit')">Reddit</button>
+        </div>
+    </div>
+
+    <script>
+        // Preset configurations
+        const presets = {
+            google: {
+                url: 'https://www.google.com',
+                title: 'Google',
+                favicon: 'https://www.google.com/favicon.ico'
+            },
+            youtube: {
+                url: 'https://www.youtube.com',
+                title: 'YouTube',
+                favicon: 'https://www.youtube.com/favicon.ico'
+            },
+            github: {
+                url: 'https://github.com',
+                title: 'GitHub',
+                favicon: 'https://github.com/favicon.ico'
+            },
+            reddit: {
+                url: 'https://www.reddit.com',
+                title: 'Reddit',
+                favicon: 'https://www.reddit.com/favicon.ico'
+            }
+        };
+
+        // Load preset function
+        function loadPreset(presetName) {
+            const preset = presets[presetName];
+            if (preset) {
+                document.getElementById('targetUrl').value = preset.url;
+                document.getElementById('fakeTitle').value = preset.title;
+                document.getElementById('faviconUrl').value = preset.favicon;
+            }
+        }
+
+        // Test fullscreen function
+        function testFullscreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+        }
+
+        // Main stealth activation function
+        document.getElementById('stealthForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const targetUrl = document.getElementById('targetUrl').value;
+            const fakeTitle = document.getElementById('fakeTitle').value;
+            const faviconUrl = document.getElementById('faviconUrl').value || document.getElementById('customIcon').value;
+            const enableFullscreen = document.getElementById('enableFullscreen').checked;
+            const hideScrollbars = document.getElementById('hideScrollbars').checked;
+            const disableContextMenu = document.getElementById('disableContextMenu').checked;
+
+            if (!targetUrl || !fakeTitle) {
+                alert('Please fill in the required fields: URL and Title');
+                return;
+            }
+
+            // Create the stealth browser HTML
+            const stealthHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${fakeTitle}</title>
+    ${faviconUrl ? '<link rel="icon" href="' + faviconUrl + '" type="image/x-icon">' : ''}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            overflow: hidden;
+            ${hideScrollbars ? 'scrollbar-width: none; -ms-overflow-style: none;' : ''}
+        }
+        ${hideScrollbars ? 'body::-webkit-scrollbar { display: none; }' : ''}
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+        .stealth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .stealth-content {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stealth-overlay" id="stealthOverlay">
+        <button class="close-btn" onclick="closeOverlay()">✕ Close</button>
+        <div class="stealth-content">
+            <h1>🕵️ Stealth Mode Active</h1>
+            <p>Loading target website...</p>
+            <p><strong>Target:</strong> ${targetUrl}</p>
+            <p><strong>Disguised as:</strong> ${fakeTitle}</p>
+            <div style="margin-top: 20px;">
+                <button onclick="startStealth()" style="background: #28a745; color: white; border: none; padding: 15px 30px; border-radius: 25px; cursor: pointer; font-size: 16px;">
+                    🚀 Start Browsing
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <iframe id="stealthFrame" src="about:blank"></iframe>
+
+    <script>
+        let isStealthActive = false;
+        
+        function closeOverlay() {
+            document.getElementById('stealthOverlay').style.display = 'none';
+        }
+        
+        function startStealth() {
+            const frame = document.getElementById('stealthFrame');
+            frame.src = '${targetUrl}';
+            closeOverlay();
+            isStealthActive = true;
+            
+            ${enableFullscreen ? `
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+            ` : ''}
+        }
+        
+        ${disableContextMenu ? `
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        ` : ''}
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        setTimeout(function() {
+            if (document.getElementById('stealthOverlay').style.display !== 'none') {
+                startStealth();
+            }
+        }, 3000);
+    </sc` + `ript>
+</body>
+</html>`;
+
+            // Open the stealth browser in about:blank
+            const newWindow = window.open('about:blank', '_self');
+            newWindow.document.open();
+            newWindow.document.write(stealthHTML);
+            newWindow.document.close();
+            
+            // Update browser history
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, null, 'about:blank');
+            }
+        });
+
+        // Add some visual feedback
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
